@@ -275,11 +275,11 @@ class DefaultTrainer(SimpleTrainer):
         optimizer = self.build_optimizer(cfg, model)
         data_loader = self.build_train_loader(cfg)
 
-        # For training, wrap with DDP. But don't need this for inference.
-        if comm.get_world_size() > 1:
-            model = DistributedDataParallel(
-                model, device_ids=[comm.get_local_rank()], broadcast_buffers=False
-            )
+        # # For training, wrap with DDP. But don't need this for inference.
+        # if comm.get_world_size() > 1:
+        #     model = DistributedDataParallel(
+        #         model, device_ids=[comm.get_local_rank()], broadcast_buffers=False
+        #     )
         super().__init__(model, data_loader, optimizer)
 
         self.scheduler = self.build_lr_scheduler(cfg, optimizer)
@@ -297,6 +297,16 @@ class DefaultTrainer(SimpleTrainer):
         self.cfg = cfg
 
         self.register_hooks(self.build_hooks())
+
+    def cuda(self, device):
+        self.model.to(torch.device(device))
+        logger = logging.getLogger(__name__)
+        logger.info("Model:\n{}".format(self.model))
+        # For training, wrap with DDP. But don't need this for inference.
+        if comm.get_world_size() > 1:
+            self.model = DistributedDataParallel(
+                self.model, device_ids=[comm.get_local_rank()], broadcast_buffers=False
+            )
 
     def resume_or_load(self, resume=True):
         """
@@ -417,8 +427,6 @@ class DefaultTrainer(SimpleTrainer):
         Overwrite it if you'd like a different model.
         """
         model = build_model(cfg)
-        logger = logging.getLogger(__name__)
-        logger.info("Model:\n{}".format(model))
         return model
 
     @classmethod

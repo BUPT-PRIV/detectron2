@@ -5,12 +5,12 @@ from .anchor_generator import build_anchor_generator, ANCHOR_GENERATOR_REGISTRY
 from .backbone import (
     BACKBONE_REGISTRY,
     FPN,
-    Backbone,
-    ResNet,
-    ResNetBlockBase,
-    build_backbone,
+    # Backbone,
+    # ResNet,
+    # ResNetBlockBase,
+    # build_backbone,
     build_resnet_backbone,
-    make_stage,
+    # make_stage,
 )
 from .meta_arch import (
     META_ARCH_REGISTRY,

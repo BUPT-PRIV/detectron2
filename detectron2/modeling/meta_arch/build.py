@@ -19,5 +19,6 @@ def build_model(cfg):
     """
     meta_arch = cfg.MODEL.META_ARCHITECTURE
     model = META_ARCH_REGISTRY.get(meta_arch)(cfg)
-    model.to(torch.device(cfg.MODEL.DEVICE))
+    # to apply pet settings, load weights -> affine model -> load to gpu
+    # model.to(torch.device(cfg.MODEL.DEVICE))
     return model

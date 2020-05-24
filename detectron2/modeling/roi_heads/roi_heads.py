@@ -12,7 +12,7 @@ from detectron2.structures import Boxes, ImageList, Instances, pairwise_iou
 from detectron2.utils.events import get_event_storage
 from detectron2.utils.registry import Registry
 
-from ..backbone.resnet import BottleneckBlock, make_stage
+# from ..backbone.resnet import BottleneckBlock, make_stage
 from ..matcher import Matcher
 from ..poolers import ROIPooler
 from ..proposal_generator.proposal_utils import add_ground_truth_to_proposals

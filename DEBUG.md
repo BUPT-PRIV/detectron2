@@ -6,7 +6,7 @@ ResNet-50
 |                         |        V0.4         |        detectron2    |        log                                      |
 | :---------------------: | :-----------------: | :------------------: | :---------------------------------------------: |  
 | RPN-C4-1x-ms(impr)      |     51.5            | 51.5                 |<a href="docs/logs/rpn_c4_out_log.txt">output</a>|                       
-| RPN-FPN-1x-ms(impr)     |     57.4            | || 
+| RPN-FPN-1x-ms(impr)     |     57.4            | 56.0                 |<a href="docs/logs/rpn_fpn_out_log.txt">output</a>| 
 | Faster-C4-1x-ms(impr)   |     35.1            | ||                     
 | Faster-DC5-1x-ms(impr)  |     34.9            | || 
 
